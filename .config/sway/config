@@ -1,0 +1,180 @@
+### Variables
+#
+# Logo key, usually windows
+set $mod Mod4
+# Home row direction keys
+set $left h
+set $down j
+set $up k
+set $right l
+# Terminal emulator
+set $term foot
+# Application launcher
+set $menu rofi -show
+# Wallpaper
+set $wallpaper ~/pictures/wallpapers/hk_room.png
+
+### Includes
+#
+# sources environment variables
+include /etc/sway/config.d/*
+
+### Output
+#
+# Wallpaper
+output * bg $wallpaper fill
+output eDP-1 scale 1.25
+
+### Idle configuration
+#
+# Lock screen after 300 seconds of inactivity, turn off after 300 seconds.
+# Turn screen on when resumed and lock when sleeping.
+exec swayidle -w \
+    timeout 300 'swaylock -f -i "$wallpaper"' \
+    timeout 600 'swaymsg "output * power off"' \
+	resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f -i "$wallpaper"'
+
+### Input configuration
+#
+# Cursor configuration
+input "type:touchpad" {
+    dwt disabled
+    tap enabled
+    middle_emulation enabled
+    pointer_accel 0.5
+}
+
+input "type:keyboard" {
+    repeat_delay 200
+    xkb_options ctrl:nocaps
+}
+# Map caps lock to control
+
+### Key bindings
+#
+# Start a terminal
+bindsym $mod+Return exec $term
+# Kill focused window
+bindsym $mod+q kill
+# Start your launcher
+bindsym $mod+d exec $menu
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+floating_modifier $mod normal
+# Restart sway
+bindsym $mod+Shift+r restart
+# Reload configuration file
+bindsym $mod+Shift+c reload
+# Exit sway and Wayland session
+bindsym $mod+Shift+e exec swaymsg exit
+# Moving around:
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# Workspaces:
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+# Alternate between workspaces
+bindsym $mod+Tab workspace back_and_forth
+# Layout stuff:
+# $mod+y or $mod+x, for horizontal and vertical splits
+bindsym $mod+y splith
+bindsym $mod+x splitv
+# Switch the current container between different layout styles
+bindsym $mod+comma layout stacking
+bindsym $mod+period layout tabbed
+bindsym $mod+slash layout toggle split
+# Make the curent focus fullscreen
+bindsym $mod+f fullscreen
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
+# Move focus to the parent container
+bindsym $mod+a focus parent
+# Scratchpad:
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+s move scratchpad
+# Show windows from scratchpad
+bindsym $mod+s scratchpad show
+# Resizing containers:
+mode "resize" {
+    # Resize
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+# Media keys
+bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute 	     exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute     exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+# Brightness
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+# Screenshots
+bindsym Print exec ~/bin/grimshot --notify save active
+bindsym Shift+Print exec ~/bin/grimshot --notify save area
+# Applications
+bindsym $mod+b exec firefox
+bindsym $mod+p exec keepassxc
+# Notification
+bindsym $mod+n exec makoctl dismiss
+# screenlock
+bindsym $mod+shift+l exec swaylock -f -i "$wallpaper"
+
+###
+# Window settings
+#
+# Borders and gaps
+default_border pixel 4
+gaps inner 8
+
+# Colors:
+set $bg        #181616
+set $fg        #c5c9c5
+set $border    #282727
+set $inactive  #1d1c19
+set $urgent    #c4746e
+
+# class                  border     bg   fg   indicator  child_border
+client.focused           $border    $bg  $fg  $border    $border
+client.focused_inactive  $inactive  $bg  $fg  $inactive  $inactive
+client.unfocused         $inactive  $bg  $fg  $inactive  $inactive
+client.urgent            $urgent    $bg  $fg  $urgent    $urgent
+
+### Status Bar
+#
+#
+bar {
+	swaybar_command waybar
+}
+
+###
+# Window Rules
+#
+# Focus urgent windows
+focus_on_window_activation focus

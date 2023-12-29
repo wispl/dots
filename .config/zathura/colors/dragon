@@ -1,0 +1,38 @@
+# Kanagawa dragon colors
+
+set notification-error-bg       "#181816"
+set notification-error-fg       "#FF5D62"
+set notification-warning-bg     "#181816"
+set notification-warning-fg     "#FFA066"
+set notification-bg             "#181816"
+set notification-fg             "#C5C9C5"
+
+set completion-bg               "#181816"
+set completion-fg               "#C5C9C5"
+set completion-group-bg         "#2A2A37"
+set completion-group-fg         "#C5C9C5"
+set completion-highlight-bg     "#957FB8"
+set completion-highlight-fg     "#181816"
+
+set index-bg                    "#181816"
+set index-fg                    "#957FB8"
+set index-active-bg             "#957FB8"
+set index-active-fg             "#181816"
+
+set inputbar-bg                 "#181816"
+set inputbar-fg                 "#C5C9C5"
+
+set statusbar-bg                "#181816"
+set statusbar-fg                "#C5C9C5"
+
+set highlight-color             "#FFA066"
+set highlight-active-color      "#FF5D62"
+
+set default-bg                  "#181816"
+set default-fg                  "#C5C9C5"
+set render-loading              "true"
+set render-loading-bg           "#181816"
+set render-loading-fg           "#C5C9C5"
+
+set recolor-lightcolor          "#181816"
+set recolor-darkcolor           "#C5C9C5"

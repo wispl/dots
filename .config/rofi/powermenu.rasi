@@ -1,0 +1,90 @@
+@theme "kanagawa"
+
+* {
+    font: "JetBrains Mono 12";
+}
+
+window {
+    location: center;
+    anchor: center;
+    width: 1000px;
+
+    border: 4px solid;
+    border-radius: 8px;
+    border-color: @bg-alt;
+    background-color: @bg;
+    margin: 0px;
+    padding: 0px;
+}
+
+mainbox {
+    spacing: 10px;
+    padding: 30px;
+    background-color: transparent;
+    children: [inputbar, message, listview];
+}
+
+inputbar {
+    text-color: @fg;
+    background-color: transparent;
+
+    children: [dummy, prompt, dummy];
+}
+
+dummy {
+	background-color: inherit;
+}
+
+prompt {
+    padding:                     12px;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+message {
+    background-color:            @bg;
+    text-color:                  @fg;
+    margin:                      0px 15px 15px 15px;
+    padding:                     15px;
+}
+
+textbox {
+    background-color:            inherit;
+    text-color:                  inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+}
+
+listview {
+    columns: 5;
+    lines: 1;
+    layout: vertical;
+
+    fixed-height: true;
+    fixed-columns: true;
+    background-color: inherit;
+}
+
+element {
+    border-radius: 8px;
+    padding: 28px 10px;
+    cursor: pointer;
+
+    text-color: @fg;
+    background-color: @bg;
+}
+
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+    cursor: inherit;
+
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+}
+
+element selected {
+    background-color: @fg;
+    text-color: @bg;
+}
+
