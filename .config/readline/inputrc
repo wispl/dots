@@ -1,0 +1,15 @@
+# Ignore case 
+set completion-ignore-case on
+# Partially complete command and show all possible completions
+set show-all-if-ambiguous on
+
+# Color files by types
+# Note that this may cause completion text blink in some terminals (e.g. xterm).
+set colored-stats On
+# Color the common prefix
+set colored-completion-prefix On
+# Color the common prefix in menu-complete
+set menu-complete-display-prefix On
+
+# Keeps the terminal tidy
+set echo-control-characters off
