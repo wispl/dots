@@ -51,16 +51,16 @@ return {
 		end
 	},
 	-- latex
-	"lervag/vimtex",
-	lazy = false, -- lazy-loading will disable inverse search
-	config = function()
-		vim.api.nvim_create_autocmd({ "FileType" }, {
-			group = vim.api.nvim_create_augroup("vim_vimtex_conceal", { clear = true }),
-			pattern = { "bib", "tex" },
-			callback = function() vim.wo.conceallevel = 2 end,
-		})
-	end,
-	init = function()
-		vim.g.vimtex_view_method = "zathura"
-	end
+	{
+		"lervag/vimtex",
+		lazy = false, -- lazy-loading will disable inverse search
+		config = function()
+			vim.api.nvim_create_autocmd({ "FileType" }, {
+				group = vim.api.nvim_create_augroup("Vimtex Conceal", {}),
+				pattern = { "bib", "tex" },
+				callback = function() vim.wo.conceallevel = 2 end,
+			})
+			vim.g.vimtex_view_method = "zathura"
+		end,
+	}
 }

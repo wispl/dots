@@ -1,5 +1,1 @@
-require("core")
-require("pack")
--- require("lsp")
-require("statusline")
-vim.cmd.colorscheme("kanagawa")
+require("config")

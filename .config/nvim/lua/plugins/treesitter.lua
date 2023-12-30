@@ -15,6 +15,8 @@ return {
 				"glsl",
 				"html",
 				"javascript",
+				"json",
+				"jsonc",
 				"lua",
 				"markdown",
 				"markdown_inline",

@@ -27,7 +27,11 @@ vim.opt.listchars = {
 vim.filetype.add({
 	extension = {
 		vert = "glsl",
-		frag = "glsl"
+		frag = "glsl",
+	},
+	pattern = {
+		[".*/waybar/config"] = "jsonc",
+		[".*/mako/config"] = "dosini"
 	}
 })
 
