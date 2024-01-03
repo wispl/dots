@@ -4,11 +4,22 @@ return {
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
 		version = false,
-		dependencies = "nvim-lua/plenary.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+				config = function()
+					require("telescope").load_extension("fzf")
+				end
+			}
+		},
 		keys = {
 			{"<leader>f", "<cmd>Telescope find_files<cr>"},
 			{"<leader>b", "<cmd>Telescope buffers sort_mru=true<cr>"},
 			{"<leader>g", "<cmd>Telescope live_grep<cr>"},
+			{"<leader>/", "<cmd>Telescope grep_string<cr>"},
+			{"<leader>;", "<cmd>Telescope command_history<cr>"},
 		}
 	},
 	-- git signs
@@ -54,9 +65,32 @@ return {
 	},
 	-- surround
 	{
-		"kylechui/nvim-surround",
-		version = "*",
-		event = "VeryLazy",
-		config = true
+		"echasnovski/mini.surround",
+		keys = {
+			{ "ys", desc = "Add surrounding" },
+			{ "ds", desc = "Delete surrounding" },
+			{ "cs", desc = "Replace surrounding" },
+			{ "S",
+				[[:<C-u>lua MiniSurround.add('visual')<CR>]],
+				desc = "Add surrounding (visual)",
+				mode = "x",
+				silent = true
+			},
+			{ "yss", "ys_", desc = "Add surrounding to line", remap = true },
+		},
+		config = function()
+			require("mini.surround").setup({
+				mappings = {
+					add = "ys",
+					delete = "ds",
+					find = "",
+					find_left = "",
+					highlight = "",
+					replace = "cs",
+					update_n_lines = "",
+				}
+			})
+			vim.keymap.del("x", "ys")
+		end,
 	},
 }

@@ -11,23 +11,25 @@ return {
 				-- Make and cmake
 				["build/Makefile"] = {
 					["*"] = {
-						make = "make -C {project}/build",
+						make = "make -Ck build",
 						dispatch = "./build/{project|basename}"
 					}
 				},
 				-- Headers and source files for cpp and c
-				["src/*.cpp"] = {
-					["*.cpp"] = { alternate = "{}.h" },
-					["*.h"]   = { alternate = "{}.cpp" }
+				["src/*.c|*.c|src/*.cpp|*.cpp"] = {
+					["*.cpp"] = {
+						alternate = { "{}.h", "{}.hpp" }
+					},
+					["*.c"] = {
+						alternate = "{}.h"
+					},
+					["*.h"]   = {
+						alternate = { "{}.c", "{}.cpp" }
+					},
+					["*.hpp"]   = {
+						alternate = "{}.cpp"
+					}
 				},	
-				["src/*.c"] = {
-					["*.c"] = { alternate = "{}.h" },
-					["*.h"] = { alternate = "{}.c" }
-				},
-				-- html
-				["index.html"] = {
-					["*"] = { dispatch = "xdg-open index.html" }
-				},
 				-- rust
 				["Cargo.toml"] = {
 					["*"] = {

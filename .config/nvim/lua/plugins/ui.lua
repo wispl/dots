@@ -75,7 +75,6 @@ return {
 						{ key = "n", action = "ene | startinsert",    desc = "New file",    },
 						{ key = "r", action = "Telescope oldfiles",   desc = "Recent files",},
 						{ key = "p", action = "Telescope marks",      desc = "Projects",    },
-						{ key = "c", action = "e $MYVIMRC",           desc = "Config",      },
 						{ key = "q", action = "qa",                   desc = "Quit",        }
 					},
 					footer = function()
@@ -94,12 +93,4 @@ return {
 			return opts
 		end
 	},
-
-	{
-		"nanozuki/tabby.nvim",
-		enabled = false,
-		config = function(_, _)
-			require("tabby.tabline").use_preset("active_wins_at_tail")
-		end
-	}
 }

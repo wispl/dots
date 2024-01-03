@@ -15,7 +15,6 @@ local modes = {
 	["s"] = "Select",
 	["s"] = "Select",
 	["S"] = "Select",
-	[""] = "Visual",
 	["i"] = "Insert",
 	["ic"] = "Insert",
 	["ix"] = "Insert",
@@ -118,12 +117,7 @@ local function filepos()
 	return string.format("%s %s:%s ", "%#ColorColumn#", "%l", "%c")
 end
 
-vim.api.nvim_create_autocmd("Colorscheme", {
-	group = vim.api.nvim_create_augroup("TabLineSep", {}),
-	desc = "Refresh TabLine Separator colors on colorscheme change",
-	callback = function(opts) set_tabsep_hl() end
-})
-
+-- inspired by nanozuki/tabby.nvim
 function _G.custom_tabline()
 	local tabs = "%#TabLine# Tabs: %#TabSep#"
 	local curr = vim.fn.tabpagenr()
@@ -134,16 +128,15 @@ function _G.custom_tabline()
 		local bufname = vim.fn.bufname(buflist[winnum])
 		local sep_hl = (i == curr and "%#TabSelSep#" or "%#TabSep#")
 		local buf_hl = (i == curr and "%#TabLineSel#" or "%#TabLine#")
-		local dir = vim.fn.fnamemodify(bufname, ":p:~")
-		if dir == "~/" then
-			dir = "[No Name]"
+		local file = vim.fn.fnamemodify(bufname, ":t")
+		if file == "" then
+			file = "[No Name]"
 		end
 
-		tabs = string.format("%s%s%s %s %s", tabs, sep_hl, buf_hl, dir, sep_hl)
+		tabs = string.format("%s%s%s %s %s", tabs, sep_hl, buf_hl, file, sep_hl)
 	end
 
-	tabs = tabs .. "%= %#TabSep#%#TabLine#" .. string.rep(" ", 10)
-	return tabs
+	return tabs .. "%= %#TabSep#%#TabLine#" .. string.rep(" ", 10)
 end
 
 function _G.custom_statusline()
@@ -158,6 +151,12 @@ function _G.custom_statusline()
 		filepos()
 	})
 end
+
+vim.api.nvim_create_autocmd("Colorscheme", {
+	group = vim.api.nvim_create_augroup("TabLineSep", {}),
+	desc = "Refresh TabLine Separator colors on colorscheme change",
+	callback = function(opts) set_tabsep_hl() end
+})
 
 set_tabsep_hl()
 vim.o.statusline = "%!v:lua.custom_statusline()"
