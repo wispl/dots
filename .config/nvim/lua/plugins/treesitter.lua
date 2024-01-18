@@ -44,7 +44,7 @@ return {
 				},
 				move = {
 					enable = true,
-					set_jumps = true, -- whether to set jumps in the jumplist
+					set_jumps = true,
 					goto_next_start = {
 						["]m"] = "@function.outer",
 						["]]"] = "@class.outer",
@@ -62,6 +62,15 @@ return {
 						["[]"] = "@class.outer",
 					},
 				},
+				swap = {
+					enable = true,
+					swap_next = {
+						["gs"] = "@parameter.inner",
+					},
+					swap_previous = {
+						["gS"] = "@parameter.inner",
+					},
+				}
 			},
 		},
 		config = function(_, opts)

@@ -2,9 +2,9 @@ return {
 	-- snippets
 	{
 		"L3MON4D3/LuaSnip",
+		event = "InsertEnter",
 		keys = {
-			{
-				"<tab>",
+			{ "<tab>",
 				function()
 					return require("luasnip").expand_or_jumpable()
 						and "<Plug>luasnip-expand-or-jump"
@@ -15,15 +15,15 @@ return {
 			{ "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
 			{ "<S-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
 		},
-		opts = {
-			enable_autosnippets = true,
-			history = true,
-		},
 		config = function()
 			require("luasnip.loaders.from_lua").lazy_load({ paths = "./lua/snippets/" })
 			ls = require("luasnip")
 			ls.filetype_extend("glsl", {"c"})
 			ls.filetype_extend("cpp", {"c"})
+			require("luasnip").setup({
+				enable_autosnippets = true,
+				history = true,
+			})
 		end
 	},
 	-- autocompletion

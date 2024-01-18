@@ -6,6 +6,12 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.infercase = true
 
+vim.o.splitbelow = true
+vim.o.splitright = true
+
+vim.opt.shortmess:append("W")
+
+-- ui stuff
 vim.o.termguicolors = true
 vim.o.laststatus = 3
 vim.o.cmdheight = 0
@@ -47,9 +53,17 @@ vim.keymap.set("n", "[t", "<cmd>tabprev<cr>")
 vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end)
 vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end)
 
+-- windows
 vim.keymap.set("n", "<C-j>", "<C-W>j")
 vim.keymap.set("n", "<C-k>", "<C-W>k")
 vim.keymap.set("n", "<C-h>", "<C-W>h")
 vim.keymap.set("n", "<C-l>", "<C-W>l")
+
+vim.keymap.set("n", "<C-Up>", "<C-W>+")
+vim.keymap.set("n", "<C-Down>", "<C-W>-")
+vim.keymap.set("n", "<C-Left>", "<C-W><")
+vim.keymap.set("n", "<C-Right>", "<C-W>>")
+
+vim.keymap.set({ "n", "x" }, "gy", '"+y')
 
 vim.keymap.set("n", "<leader>i", "<cmd>$tabnew ~/notes/index.md<cr><cmd>tcd ~/notes<cr>")
