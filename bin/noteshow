@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+shopt -s globstar
+files=""
+for note in ~/notes/**/*.pdf; do
+	files="${files}${note#"$HOME/notes/"}\n"
+done
+file=$(echo -e "$files" | rofi -dmenu -p "Notes")
+
+if [[ -n "$file" ]]; then
+	zathura "~/notes/$file"
+fi

@@ -1,0 +1,24 @@
+* {
+    fg:      #c5c9c5;
+
+    bg0:     #0d0c0c;
+    bg1:     #12120f;
+    bg2:     #1D1C19;
+    bg:      #181616;
+    bg4:     #282727;
+    bg5:     #393836;
+    bg6:     #625e5a;
+
+    red:     #c4746e;
+    green:   #87a987;
+    yellow:  #c4b28a;
+    orange:  #b6927b;
+    blue:    #8ba4b0;
+    magenta: #a292a3;
+    cyan:    #8ea4a2;
+
+    bg-alt:  #2A2A37;
+    selected: var(magenta);
+    buttons: var(bg2);
+    border:  var(bg4);
+}

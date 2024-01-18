@@ -37,19 +37,18 @@ exec swayidle -w \
 
 ### Input configuration
 #
-# Cursor configuration
-input "type:touchpad" {
+input type:touchpad {
     dwt disabled
     tap enabled
     middle_emulation enabled
     pointer_accel 0.5
 }
 
-input "type:keyboard" {
+# Map caps lock to control
+input type:keyboard {
     repeat_delay 200
     xkb_options ctrl:nocaps
 }
-# Map caps lock to control
 
 ### Key bindings
 #
@@ -94,7 +93,6 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 # Alternate between workspaces
 bindsym $mod+Tab workspace back_and_forth
-# Layout stuff:
 # $mod+y or $mod+x, for horizontal and vertical splits
 bindsym $mod+y splith
 bindsym $mod+x splitv
@@ -110,7 +108,6 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 # Move focus to the parent container
 bindsym $mod+a focus parent
-# Scratchpad:
 # Move the currently focused window to the scratchpad
 bindsym $mod+Shift+s move scratchpad
 # Show windows from scratchpad
@@ -140,10 +137,13 @@ bindsym Print exec ~/bin/grimshot --notify save active
 bindsym Shift+Print exec ~/bin/grimshot --notify save area
 # Applications
 bindsym $mod+b exec firefox
-bindsym $mod+p exec keepassxc
+bindsym $mod+p exec ~/bin/rairun keepassxc org.keepassxc.KeePassXC
+bindsym $mod+semicolon exec ~/bin/rairun '$term -a "dropterm"' dropterm
 # Notification
 bindsym $mod+n exec makoctl dismiss
-# screenlock
+# Notes
+bindsym $mod+i exec ~/bin/noteshow
+# Screenlock
 bindsym $mod+shift+l exec swaylock -f -i "$wallpaper"
 
 ###
@@ -152,6 +152,7 @@ bindsym $mod+shift+l exec swaylock -f -i "$wallpaper"
 # Borders and gaps
 default_border pixel 4
 gaps inner 8
+gaps top -8
 
 # Colors:
 set $bg        #181616
@@ -170,7 +171,7 @@ client.urgent            $urgent    $bg  $fg  $urgent    $urgent
 #
 #
 bar {
-	swaybar_command waybar
+    swaybar_command waybar
 }
 
 ###
@@ -178,3 +179,10 @@ bar {
 #
 # Focus urgent windows
 focus_on_window_activation focus
+
+for_window [app_id="dropterm"] {
+    floating enable
+    resize set 100ppt 50ppt, move position 0 0
+    move container to scratchpad
+    scratchpad show
+}

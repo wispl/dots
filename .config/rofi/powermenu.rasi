@@ -1,4 +1,4 @@
-@theme "kanagawa"
+@theme "dragon"
 
 * {
     font: "JetBrains Mono 12";
@@ -11,7 +11,7 @@ window {
 
     border: 4px solid;
     border-radius: 8px;
-    border-color: @bg-alt;
+    border-color: @border;
     background-color: @bg;
     margin: 0px;
     padding: 0px;
@@ -84,7 +84,7 @@ element-text {
 }
 
 element selected {
-    background-color: @fg;
+    background-color: @selected;
     text-color: @bg;
 }
 

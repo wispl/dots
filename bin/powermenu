@@ -13,22 +13,20 @@ options="$lock\n$suspend\n$logout\n$reboot\n$shutdown"
 # get user choice
 choice=$(echo -e "$options" | rofi -theme "$theme" -dmenu -p $HOSTNAME -mesg "$(uptime -p)")
 
-notify-send "$choice"
-
-# case $choice in
-# 	$lock)
-# 		lock
-# 		;;
-# 	$suspend)
-# 		systemctl suspend
-# 		;;
-# 	$logout)
-# 		systemctl logout
-# 		;;
-# 	$reboot)
-# 		systemctl reboot
-# 		;;
-# 	$shutdown)
-# 		systemctl shutdown
-# 		;;
-# esac
+case $choice in
+	$lock)
+		lock
+		;;
+	$suspend)
+		systemctl suspend
+		;;
+	$logout)
+		systemctl logout
+		;;
+	$reboot)
+		systemctl reboot
+		;;
+	$shutdown)
+		systemctl shutdown
+		;;
+esac

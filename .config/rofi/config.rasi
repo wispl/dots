@@ -1,4 +1,4 @@
-@theme "kanagawa"
+@theme "dragon"
 
 configuration {
     modi: "drun,run,filebrowser";
@@ -19,7 +19,7 @@ window {
 
     border: 4px solid;
     border-radius: 8px;
-    border-color: @bg-alt;
+    border-color: @border;
     background-color: @bg;
     margin: 0px;
     padding: 0px;
@@ -48,7 +48,6 @@ prompt {
 entry {
     text-color: inherit;
     background-color: inherit;
-    placeholder: "search...";
 }
 
 listview {
@@ -62,8 +61,8 @@ scrollbar {
     handle-width: 5px;
     border-radius: 8px;
 
-    handle-color: @fg;
-    background-color: @bg-alt;
+    handle-color: @selected;
+    background-color: @buttons;
 }
 
 element {
@@ -80,7 +79,7 @@ element-text {
 }
 
 element selected {
-    background-color: @fg;
+    background-color: @selected;
     text-color: @bg;
 }
 
@@ -94,11 +93,11 @@ button {
     padding: 10px;
     border-radius: 8px;
 
-    background-color: @bg-alt;
+    background-color: @buttons;
     text-color: @fg;
 }
 
 button selected {
-  background-color: @fg;
+  background-color: @selected;
   text-color: @bg;
 }
