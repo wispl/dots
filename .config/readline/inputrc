@@ -1,7 +1,18 @@
-# Ignore case 
+$include /etc/inputrc
+
+# Ignore case
 set completion-ignore-case on
+# Don't insert duplicate completed characters
+set skip-completed-text on
+
 # Partially complete command and show all possible completions
 set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set menu-complete-display-prefix on
+
+# Pressing tab cycles through completion items
+"\t": menu-complete
+"\e[Z": menu-complete-backward
 
 # Color files by types
 # Note that this may cause completion text blink in some terminals (e.g. xterm).
@@ -13,3 +24,5 @@ set menu-complete-display-prefix On
 
 # Keeps the terminal tidy
 set echo-control-characters off
+
+"\C-l": clear-display

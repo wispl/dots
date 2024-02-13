@@ -21,7 +21,6 @@ alias ll="ls -l"
 alias ..="cd .."
 alias grep="grep --color=auto"
 
-alias nnn="nnn -C"
 alias ncdu="ncdu --color dark"
 alias vim="nvim"
 
