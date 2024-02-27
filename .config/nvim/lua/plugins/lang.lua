@@ -11,7 +11,7 @@ return {
 				-- make and cmake
 				["build/Makefile"] = {
 					["*"] = {
-						make = "make -Ck build", dispatch = "./build/{project|basename}"
+						make = "make -C {project}/build/", dispatch = "./build/{project|basename}"
 					}
 				},
 				-- rust

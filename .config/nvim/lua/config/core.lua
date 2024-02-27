@@ -11,6 +11,8 @@ vim.o.splitright = true
 
 vim.opt.shortmess:append("W")
 
+vim.o.hidden = true
+
 -- ui stuff
 vim.o.termguicolors = true
 vim.o.laststatus = 3

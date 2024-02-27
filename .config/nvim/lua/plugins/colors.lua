@@ -22,10 +22,8 @@ return {
 					StatusCommand = { bg = theme.syn.operator, fg = theme.ui.bg },
 					StatusTerminal = { bg = theme.syn.fun, fg = theme.ui.bg_m3 },
 
-					-- better border highlights
 					FloatBorder = { fg = theme.ui.float.fg_border, bg = theme.ui.bg },
 					NormalFloat = { fg = theme.ui.float.fg, bg = theme.ui.bg },
-
 					WinSeparator = { fg = theme.ui.bg_p2 },
 					DashboardHeader = { fg = theme.syn.comment },
 				}
