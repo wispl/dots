@@ -15,6 +15,16 @@ return {
 			overrides = function(colors)
 				local theme = colors.theme
 				return {
+				  NormalFloat = { bg = theme.ui.bg_dim },
+					FloatBorder = { bg = "none" },
+					FloatTitle = { bg = "none" },
+					WinSeparator = { fg = theme.ui.bg_p2 },
+
+					Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
+					PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+					PmenuSbar = { bg = theme.ui.bg_m1 },
+					PmenuThumb = { bg = theme.ui.bg_p2 },
+
 					StatusNormal = { bg = theme.syn.fun, fg = theme.ui.bg_m3 },
 					StatusInsert = { bg = theme.diag.ok, fg = theme.ui.bg },
 					StatusVisual = { bg = theme.syn.keyword, fg = theme.ui.bg },
@@ -22,10 +32,18 @@ return {
 					StatusCommand = { bg = theme.syn.operator, fg = theme.ui.bg },
 					StatusTerminal = { bg = theme.syn.fun, fg = theme.ui.bg_m3 },
 
-					FloatBorder = { fg = theme.ui.float.fg_border, bg = theme.ui.bg },
-					NormalFloat = { fg = theme.ui.float.fg, bg = theme.ui.bg },
-					WinSeparator = { fg = theme.ui.bg_p2 },
 					DashboardHeader = { fg = theme.syn.comment },
+
+					LazyNormal = { bg = theme.ui.bg_dim, fg = theme.ui.float.fg_border },
+
+					TelescopePromptTitle = { fg = theme.ui.bg_dim, bg = theme.syn.keyword, bold = true },
+					TelescopePromptNormal = { bg = theme.ui.bg_m1 },
+					TelescopePromptBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+					TelescopeResultsNormal = { fg = theme.ui.fg, bg = theme.ui.bg_dim },
+					TelescopeResultsBorder = { fg = theme.ui.bg_dim, bg = theme.ui.bg_dim },
+					TelescopePreviewTitle = { fg = theme.ui.bg_dim, bg = theme.syn.constant, bold = true },
+					TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+					TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
 				}
 			end
 		},

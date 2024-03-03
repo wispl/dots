@@ -20,6 +20,25 @@ return {
 			{"<leader>g", "<cmd>Telescope live_grep<cr>"},
 			{"<leader>/", "<cmd>Telescope grep_string<cr>"},
 			{"<leader>;", "<cmd>Telescope command_history<cr>"},
+		},
+		opts = {
+			defaults = {
+				prompt_prefix = " ",
+				layout_strategy = "flex",
+				selection_caret = "  ",
+				entry_prefix = "  ",
+				dynamic_preview_title = true,
+				results_title = "",
+				sorting_strategy = "ascending",
+				layout_config = {
+					horizontal = {
+						prompt_position = "top",
+						preview_width = 0.55
+					},
+					width = 0.80,
+					height = 0.85
+				}
+			}
 		}
 	},
 	-- git signs

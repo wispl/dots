@@ -5,11 +5,50 @@ return {
 		dependencies = "MunifTanjim/nui.nvim",
 		event = "VeryLazy",
 		opts = {
+			cmdline = {
+				format = {
+						search_down = { kind = "search", pattern = "^/", icon = "", lang = "regex" },
+						search_up = { kind = "search", pattern = "^%?", icon = "", lang = "regex" }
+				}
+			},
 			presets = {
-				bottom_search = true,
-				command_palette = true,
 				long_message_to_split = true,
 				lsp_doc_border = true,
+			},
+			views = {
+				cmdline_popup = {
+					position = {
+						row = 5,
+						col = "50%",
+					},
+					size = {
+						width = 60,
+						height = "auto",
+					},
+					border = {
+						style = "none",
+						padding = { 1, 2 },
+					},
+					filter_options = {},
+					win_options = {
+						winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+					},
+				},
+				popupmenu = {
+					relative = "editor",
+					position = {
+						row = 8,
+						col = "50%",
+					},
+					size = {
+						width = 60,
+						height = 10,
+					},
+					border = {
+						style = "none",
+						padding = { 1, 2 },
+					},
+				},
 			},
 			lsp = {
 				override = {
@@ -40,7 +79,7 @@ return {
 		},
 		opts = {
 			timeout = 1000,
-			render = "simple",
+			render = "wrapped-compact",
 			stages = "static"
 		}
 	},
