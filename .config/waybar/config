@@ -1,6 +1,8 @@
 {
     "height": 45,
-    "margin": 10,
+    "margin-top": 10,
+    "margin-left": 8,
+    "margin-right": 8,
     "modules-left": ["memory", "network"],
     "modules-center": ["sway/workspaces"],
     "modules-right": ["pulseaudio", "pulseaudio/slider", "backlight", "backlight/slider", "battery", "clock"],

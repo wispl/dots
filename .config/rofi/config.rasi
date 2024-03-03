@@ -2,9 +2,9 @@
 
 configuration {
     modi: "drun,run,filebrowser";
-    font: "Jetbrains Mono 17";
+    font: "Jetbrains Mono 22";
     show-icons: false;
-    terminal: "footclient";
+    terminal: "foot";
     display-drun:  " ";
     display-run: " ";
     display-filebrowser: " ";
@@ -14,8 +14,7 @@ configuration {
 window {
     location: center;
     anchor: center;
-    height: 600px;
-    width: 600px;
+    width: 800px;
 
     border: 4px solid;
     border-radius: 8px;
@@ -55,6 +54,8 @@ listview {
     spacing: 10px;
     background-color: transparent;
     scrollbar: true;
+    lines: 10;
+    fixed-height: true;
 }
 
 scrollbar {
