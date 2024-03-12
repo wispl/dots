@@ -34,8 +34,6 @@ return {
 
 					DashboardHeader = { fg = theme.syn.comment },
 
-					LazyNormal = { bg = theme.ui.bg_dim, fg = theme.ui.float.fg_border },
-
 					TelescopePromptTitle = { fg = theme.ui.bg_dim, bg = theme.syn.keyword, bold = true },
 					TelescopePromptNormal = { bg = theme.ui.bg_m1 },
 					TelescopePromptBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
