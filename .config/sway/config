@@ -200,14 +200,19 @@ bar {
     swaybar_command waybar
 }
 
+# Cursor
+seat seat0 xcursor_theme Adwaita 32
+# set in gtk
+# gsettings set org.gnome.desktop.interface cursor-theme cursor_theme_name
+# gsettings set org.gnome.desktop.interface cursor-size cursor_theme_size
+
+
 ### Window Rules
 
 # Scratch Terminal
 for_window [app_id="dropterm"] {
     floating enable
     resize set 90ppt 50ppt, move position 5ppt -8px
-    # move container to scratchpad
-    # scratchpad show
 }
 
 for_window [app_id="org.keepassxc.KeePassXC"] {

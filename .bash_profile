@@ -14,7 +14,8 @@ export MANPATH="${MANPATH}:/usr/local/texlive/2023/texmf-dist/doc/man"
 export INFOPATH="${INFOPATH}:/usr/local/texlive/2023/texmf-dist/doc/info"
 
 # Wayland variables
-export QT_QPA_PLATFORM=wayland
+# For Intellij and AVD emulator
+export QT_QPA_PLATFORM="wayland;xcb"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Editor
@@ -29,10 +30,12 @@ export XDG_CACHE_HOME=~/.cache
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
-export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java"
+
+# Font Scaling (comment out if not needed)
+export QT_FONT_DPI=120
 
 #
-# sway
+# Window Manager
 #
 
 [ "$(tty)" = "/dev/tty1" ] && exec sway
