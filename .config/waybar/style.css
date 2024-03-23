@@ -117,10 +117,14 @@ window#waybar {
     color: @bg6;
 }
 
-#workspaces button.persistent {
+#workspaces button.empty {
     color: @bg5;
 }
 
-#workspaces button.visible {
+#workspaces button.urgent {
+    color: @red;
+}
+
+#workspaces button.focused {
     color: @fg;
 }
