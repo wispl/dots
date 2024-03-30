@@ -153,7 +153,7 @@ return {
 	),
 
 	-- Subscripts and Superscripts
-	s({ trig = "_", wordTrig = fales, snippetType = "autosnippet" },
+	s({ trig = "_", wordTrig = false, snippetType = "autosnippet" },
 		fmta("_{<>}<>", { i(1), i(0) } ),
 		{ condition = in_mathzone }
 	),

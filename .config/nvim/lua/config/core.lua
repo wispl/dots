@@ -50,8 +50,12 @@ vim.keymap.set("i", "jk", "<Esc>")
 
 vim.keymap.set("n", "]q", "<cmd>cnext<cr>")
 vim.keymap.set("n", "[q", "<cmd>cprev<cr>")
+
+vim.keymap.set("n", "<leadre>tn", "<cmd>tabnew<cr>")
+vim.keymap.set("n", "<leadre>tc", "<cmd>tcd %:h<cr>")
 vim.keymap.set("n", "]t", "<cmd>tabnext<cr>")
 vim.keymap.set("n", "[t", "<cmd>tabprev<cr>")
+
 vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end)
 vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end)
 
@@ -68,4 +72,50 @@ vim.keymap.set("n", "<C-Right>", "<C-W>>")
 
 vim.keymap.set({ "n", "x" }, "gy", '"+y')
 
-vim.keymap.set("n", "<leader>i", "<cmd>$tabnew ~/notes/index.md<cr><cmd>tcd ~/notes<cr>")
+vim.keymap.set("n", "<leader>i", "<cmd>$tabnew ~/notes/index.md | tcd ~/notes<cr>")
+
+-- marking files using arglist, maybe use harpoon or grapple instead
+vim.keymap.set(
+	"n",
+	"<leader>m",
+	function()
+		local i = 0
+		while i < vim.fn.argc() do
+			if (vim.fn.argv(i) == vim.fn.expand("%")) then
+				vim.cmd.argdelete("%")
+				return
+			end
+			i = i + 1
+		end
+		vim.cmd.argadd()
+	end
+)
+vim.keymap.set(
+	"n",
+	"<leader>M",
+	function()
+		local pickers = require "telescope.pickers"
+		local finders = require "telescope.finders"
+		local conf = require("telescope.config").values
+
+		local buffers = {}
+
+		local i = 0
+		while i < vim.fn.argc() do
+			table.insert(buffers, vim.fn.argv(i))
+			i = i + 1
+		end
+
+		pickers.new({}, {
+			prompt_title = "arglist",
+			finder = finders.new_table {
+				results = buffers
+			},
+			sorter = conf.generic_sorter(opts),
+		}):find()
+	end
+)
+vim.keymap.set("n", "<leader>1", "<cmd>argument 1<cr>")
+vim.keymap.set("n", "<leader>2", "<cmd>argument 2<cr>")
+vim.keymap.set("n", "<leader>3", "<cmd>argument 3<cr>")
+vim.keymap.set("n", "<leader>4", "<cmd>argument 4<cr>")
