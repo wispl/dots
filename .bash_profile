@@ -9,14 +9,14 @@
 #
 
 # Personal scripts and tex
-export PATH="${PATH}:~/bin:/usr/local/texlive/2023/bin/x86_64-linux"
-export MANPATH="${MANPATH}:/usr/local/texlive/2023/texmf-dist/doc/man"
-export INFOPATH="${INFOPATH}:/usr/local/texlive/2023/texmf-dist/doc/info"
+export PATH="${PATH}:~/bin:/usr/local/texlive/2024/bin/x86_64-linux"
+export MANPATH="${MANPATH}:/usr/local/texlive/2024/texmf-dist/doc/man"
+export INFOPATH="${INFOPATH}:/usr/local/texlive/2024/texmf-dist/doc/info"
 
 # Wayland variables
-# For Intellij and AVD emulator
 export QT_QPA_PLATFORM="wayland;xcb"
 export _JAVA_AWT_WM_NONREPARENTING=1
+export ANKI_WAYLAND=1
 
 # Editor
 export EDITOR=nvim
