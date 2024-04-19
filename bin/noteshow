@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-shopt -s globstar
-files=""
-for note in ~/notes/**/*.pdf; do
-	files="${files}${note#"$HOME/notes/"}\n"
-done
-file=$(echo -e "$files" | rofi -dmenu -p "Notes")
+cd ~/notes
+files=(**/main.pdf)
+# files=$(find . -maxdepth 2 -iname "*.pdf" -printf "%P")
+IFS=$'\n'
+file=$(echo -e "${files[*]}" | rofi -dmenu -p "Open Note")
 
 if [[ -n "$file" ]]; then
 	zathura "~/notes/$file"
