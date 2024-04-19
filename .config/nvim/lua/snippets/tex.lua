@@ -11,6 +11,7 @@ local in_mathzone = function() return vim.fn['vimtex#syntax#in_mathzone']() == 1
 
 return {
 	-- Environments
+
 	s({ trig = "beg", snippetType = "autosnippet" },
 		fmta(
 			[[
@@ -22,7 +23,6 @@ return {
 		),
 		{ condition = line_begin }
 	),
-
 	s("fig",
 		fmta(
 			[[
@@ -36,7 +36,6 @@ return {
 		),
 		{ condition = line_begin }
 	),
-
 	s({ trig = "enum", snippetType = "autosnippet" },
 		fmta(
 			[[
@@ -59,7 +58,6 @@ return {
 		),
 		{ condition = line_begin }
 	),
-
 	s({ trig = "mk", snippetType = "autosnippet" }, { t("$"), i(1), t("$"), i(0) }),
 	s({ trig = "dm", snippetType = "autosnippet" },
 		fmta(
@@ -85,6 +83,7 @@ return {
 	),
 
 	-- Math context
+
 	-- Symbols
 	s({ trig = ">>", snippetType = "autosnippet" },
 		{ t("\\gg") },
@@ -118,8 +117,30 @@ return {
 		{ t("\\ldots") },
 		{ condition = in_mathzone }
 	),
-	s({ trig = "ooo", snippetType = "autosnippet" },
+	s({ trig = "oo", snippetType = "autosnippet" },
 		{ t("\\infty") },
+		{ condition = in_mathzone }
+	),
+	s({ trig = "(%w)hat", regTrig = true, snippetType = "autosnippet" },
+		fmta("\\hat{<>}", { f(function(_, snip) return snip.captures[1] end) }),
+		{ condition = in_mathzone }
+	),
+	s({ trig = "(%w)bar", regTrig = true, snippetType = "autosnippet" },
+		fmta("\\overline{<>}", { f(function(_, snip) return snip.captures[1] end) }),
+		{ condition = in_mathzone }
+	),
+	s({ trig = "(%a)%.,", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
+		fmta("\\vec{<>}", { f(function(_, snip) return snip.captures[1] end) }),
+		{ condition = in_mathzone }
+	),
+	s({ trig = "(%a),%.", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
+		fmta("\\vec{<>}", { f(function(_, snip) return snip.captures[1] end) }),
+		{ condition = in_mathzone }
+	),
+
+	-- Operations
+	s({ trig = "sq", wordTrig = false, snippetType = "autosnippet" },
+		fmta("\\sqrt{<>}", { i(1) }),
 		{ condition = in_mathzone }
 	),
 	s({ trig = "lim", snippetType = "autosnippet" },
@@ -128,18 +149,6 @@ return {
 	),
 	s({ trig = "sum", snippetType = "autosnippet" },
 		fmta("\\sum_{n = <>}^{<>}", { i(1, "1"), i(2, "\\infty") }),
-		{ condition = in_mathzone }
-	),
-	s({ trig = "(%a)hat", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
-		fmta("\\hat{<>}", { f(function(_, snip) return snip.captures[1] end) }),
-		{ condition = in_mathzone }
-	),
-	s({ trig = "(%a)bar", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
-		fmta("\\overline{<>}", { f(function(_, snip) return snip.captures[1] end) }),
-		{ condition = in_mathzone }
-	),
-	s({ trig = "sq", wordTrig = false, snippetType = "autosnippet" },
-		fmta("\\sqrt{<>}", { i(1) }),
 		{ condition = in_mathzone }
 	),
 	s({ trig = "dint", wordTrig = false, snippetType = "autosnippet" },
@@ -161,7 +170,7 @@ return {
 		fmta("^{<>}<>", { i(1), i(0) }),
 		{ condition = in_mathzone }
 	),
-	-- |shortcut| subscript for letter followed by number a0 -> a_{0}
+	-- a0 -> a_{0}
 	s({ trig = "(%a)(%d)", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
 		fmta(
 			"<>_{<>}",
@@ -172,7 +181,6 @@ return {
 		),
 		{ condition = in_mathzone }
 	),
-	-- |shortcut| cubes and squares
 	s({ trig = "sr", wordTrig = false, snippetType = "autosnippet" },
 		{ t("^{2}") },
 		{ condition = in_mathzone }
@@ -181,26 +189,40 @@ return {
 		{ t("^{3}") },
 		{ condition = in_mathzone }
 	),
+
 	-- Fractions
-	s({ trig = "//", wordTrig = false, snippetType = "autosnippet" },
+	s({ trig = "//", snippetType = "autosnippet" },
 		fmta("\\frac{<>}{<>}<>", { i(1), i(2), i(0) }),
 		{ condition = in_mathzone }
 	),
-	-- |shortcut| (a + b + (f*3)) -> \frac{a + b + (f*3)}{}
-	s({ trig="(%b())/", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
+	-- (a + b + (f*3)) -> \frac{a + b + (f*3)}{}
+	s({ trig = "(%b())/", regTrig = true, snippetType = "autosnippet" },
 		fmta(
 			"\\frac{<>}{<>}<>",
 			{
-				f(function (_, snip) return snip.captures[1]:sub(2, -2) end),
+				-- remove the parenthesis
+				f(function (_, snip) return string.sub(snip.captures[1], 2, -2) end),
 				i(1),
 				i(0)
 			}
 		),
 		{ condition = in_mathzone }
 	),
-	-- TODO: this might need to be modified
-	-- |shortcut| expression -> \frac{expression}{}, no spaces though
-	s({ trig="([^%s$]+)/", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
+	-- TODO: this does not work for expressions with {}
+	-- expression -> \frac{expression}{}
+	s({ trig = "([%w%.%-_\\]+)/", regTrig = true, snippetType = "autosnippet" },
+		fmta(
+			"\\frac{<>}{<>}<>",
+			{
+				f(function (_, snip) return snip.captures[1] end),
+				i(1),
+				i(0)
+			}
+		),
+		{ condition = in_mathzone }
+	),
+	-- nested fractions
+	s({ trig = "(\\frac%{%w*%}%{%w*%})/", regTrig = true, snippetType = "autosnippet" },
 		fmta(
 			"\\frac{<>}{<>}<>",
 			{

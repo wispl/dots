@@ -1,19 +1,21 @@
 -- options
+
+vim.o.timeoutlen = 500
 vim.o.scrolloff = 4
 vim.o.wrap = false
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.hidden = true
+vim.opt.shortmess:append("WIcC")
 
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.infercase = true
+vim.grepformat = "%f:%l:%c:%m"
+vim.grepprg = "rg --vimgrep"
+vim.o.conceallevel = 2
 
-vim.o.splitbelow = true
-vim.o.splitright = true
-
-vim.opt.shortmess:append("W")
-
-vim.o.hidden = true
-
--- ui stuff
+-- ui
 vim.o.termguicolors = true
 vim.o.laststatus = 3
 vim.o.cmdheight = 0
@@ -119,3 +121,8 @@ vim.keymap.set("n", "<leader>1", "<cmd>argument 1<cr>")
 vim.keymap.set("n", "<leader>2", "<cmd>argument 2<cr>")
 vim.keymap.set("n", "<leader>3", "<cmd>argument 3<cr>")
 vim.keymap.set("n", "<leader>4", "<cmd>argument 4<cr>")
+
+-- pair expansions on enter
+vim.keymap.set("i", "[<Cr>", "[<CR>]<Esc>O")
+vim.keymap.set("i", "(<Cr>", "(<CR>)<Esc>O")
+vim.keymap.set("i", "{<Cr>", "{<CR>}<Esc>O")

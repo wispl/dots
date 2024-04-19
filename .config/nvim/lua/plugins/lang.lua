@@ -57,11 +57,6 @@ return {
 		"lervag/vimtex",
 		lazy = false,
 		config = function()
-			vim.api.nvim_create_autocmd({ "FileType" }, {
-				group = vim.api.nvim_create_augroup("Vimtex Conceal", {}),
-				pattern = { "bib", "tex" },
-				callback = function() vim.wo.conceallevel = 2 end,
-			})
 			vim.g.vimtex_view_method = "zathura_simple"
 		end,
 	}

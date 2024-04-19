@@ -18,23 +18,12 @@ return {
 		config = function()
 			require("luasnip.loaders.from_lua").lazy_load({ paths = "./lua/snippets/" })
 			ls = require("luasnip")
-			ls.filetype_extend("glsl", {"c"})
-			ls.filetype_extend("cpp", {"c"})
+			ls.filetype_extend("glsl", { "c" })
+			ls.filetype_extend("cpp",  { "c" })
 			ls.setup({
 				enable_autosnippets = true,
-			})
-
-			vim.api.nvim_create_autocmd({ "ModeChanged" }, {
-				group = vim.api.nvim_create_augroup("LuaSnip Session Cancel", {}),
-				pattern = "*",
-				callback = function()
-					if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
-						and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
-						and not require('luasnip').session.jump_active
-					then
-						require('luasnip').unlink_current()
-					end
-				end
+				region_check_events = { "InsertEnter" },
+				delete_check_events = "TextChanged, InsertEnter",
 			})
 		end
 	},
@@ -77,5 +66,10 @@ return {
 				experimental = { ghost_text = true }
 			}
 		end,
+	},
+	-- git
+	{
+		"tpope/vim-fugitive",
+		event = "CmdlineEnter"
 	}
 }

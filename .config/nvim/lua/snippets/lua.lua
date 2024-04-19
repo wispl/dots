@@ -1,30 +1,49 @@
 return {
 	s("fn",
-		{
-			t("function "), i(1), t("("), i(2), t({")", "\t"}),
-			i(0),
-			t({"", "end"})
-		}
+		fmt([[
+			function {}({})
+				{}
+			end
+		]], { i(1, "name"), i(2, "args"), i(0) })
 	),
-	s("while",
-		{
-			t("while "), i(1), t({"do", "\t"}),
-			i(0),
-			t({"", "end"})
-		}
-	),
-	s("for",
-		{
-			t("for "), i(1), t({"do", "\t"}),
-			i(0),
-			t({"", "end"})
-		}
-	),
+
 	s("if",
-		{
-			t("if "), i(1), t({"then", "\t"}),
-			i(0),
-			t({"", "end"})
-		}
+		fmt([[
+			if {} then
+				{}
+			end
+		]], { i(1, "true"), i(0) })
+	),
+
+	s("elseif",
+		fmt([[
+			elseif {} then
+				{}
+		]], { i(1, "true"), i(0) })
+	),
+
+	s("for",
+		fmt([[
+			for {} do
+				{}
+			end
+		]], { i(1), i(0) })
+	),
+
+	-- TODO ipairs and pairs
+	s("fora",
+		fmt([[
+			for {},{} in ipairs({}) do
+				{}
+			end
+		]], { i(1, "_"), i(2, "j"), i(3, "arr"), i(0) })
+	),
+
+	s("while",
+		fmt([[
+			while {} do
+				{}
+			end
+		]], { i(1, "true"), i(0) })
 	),
 }

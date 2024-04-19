@@ -1,9 +1,11 @@
 return {
 	s("class",
-		{
-			t("class "), i(1), t({" {", ""}),
-			i(0),
-			t({"", "};"})
-		}
+		fmta([[
+			class <> {
+			public:
+				<>
+			private:
+			};
+		]], { i(1, "var"), i(0) })
 	),
 }
