@@ -1,31 +1,46 @@
 -- options
+local o, opt = vim.o, vim.opt
 
-vim.o.timeoutlen = 500
-vim.o.scrolloff = 4
-vim.o.wrap = false
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.o.hidden = true
-vim.opt.shortmess:append("WIcC")
+-- general
+o.timeoutlen = 500
+o.hidden = true
 
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.infercase = true
-vim.grepformat = "%f:%l:%c:%m"
-vim.grepprg = "rg --vimgrep"
-vim.o.conceallevel = 2
+o.scrolloff = 4
+o.splitbelow = true
+o.splitright = true
+o.splitkeep = "screen"
 
--- ui
-vim.o.termguicolors = true
-vim.o.laststatus = 3
-vim.o.cmdheight = 0
-vim.o.cursorline = true
-vim.o.signcolumn = "yes:1"
-vim.o.showcmd = false
-vim.o.showmode = false
-vim.o.list = true
-vim.opt.fillchars = { vert = " " }
-vim.opt.listchars = {
+o.wrap = false
+o.smartindent = true
+o.breakindent = true
+
+o.undofile = true
+opt.shortmess:append("WIcC")
+
+o.completeopt = "menuone,noinsert,noselect"
+
+-- searching
+o.ignorecase = true
+o.smartcase = true
+o.infercase = true
+o.grepformat = "%f:%l:%c:%m"
+o.grepprg = "rg --vimgrep"
+
+-- appearance
+o.termguicolors = true
+
+o.laststatus = 3
+o.cmdheight = 0
+o.showcmd = false
+o.showmode = false
+
+o.conceallevel = 2
+o.signcolumn = "yes"
+o.cursorline = true
+
+o.list = true
+opt.fillchars = { vert = " " }
+opt.listchars = {
 	tab = "  ",
 	trail = "·",
 	nbsp = "␣",
@@ -46,38 +61,57 @@ vim.filetype.add({
 })
 
 -- keymaps
+local map = vim.keymap.set
+
+-- leader keys
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.keymap.set("i", "jk", "<Esc>")
 
-vim.keymap.set("n", "]q", "<cmd>cnext<cr>")
-vim.keymap.set("n", "[q", "<cmd>cprev<cr>")
+map("i", "jk", "<Esc>")
 
-vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<cr>")
-vim.keymap.set("n", "<leader>tc", "<cmd>tcd %:h<cr>")
-vim.keymap.set("n", "]t", "<cmd>tabnext<cr>")
-vim.keymap.set("n", "[t", "<cmd>tabprev<cr>")
+-- toggle options
+map("n", "<leader>oz", function() vim.opt_local.spell = not(vim.opt_local.spell:get()) end)
+map("n", "<leader>ow", function() vim.opt_local.wrap = not(vim.opt_local.wrap:get()) end)
 
-vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end)
-vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end)
+-- spelling
+map("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u")
+
+-- diagnostic and quickfix
+map("n", "]q", "<cmd>cnext<cr>")
+map("n", "[q", "<cmd>cprev<cr>")
+map("n", "[d", function() vim.diagnostic.goto_prev() end)
+map("n", "]d", function() vim.diagnostic.goto_next() end)
+
+-- tabs
+map("n", "<leader>tn", "<cmd>tabnew<cr>")
+map("n", "<leader>tc", "<cmd>tcd %:h<cr>")
+map("n", "]t", "<cmd>tabnext<cr>")
+map("n", "[t", "<cmd>tabprev<cr>")
+-- notes tab
+map("n", "<leader>i", "<cmd>$tabnew ~/notes/index.md | tcd ~/notes<cr>")
 
 -- windows
-vim.keymap.set("n", "<C-j>", "<C-W>j")
-vim.keymap.set("n", "<C-k>", "<C-W>k")
-vim.keymap.set("n", "<C-h>", "<C-W>h")
-vim.keymap.set("n", "<C-l>", "<C-W>l")
+map("n", "<C-j>", "<C-W>j")
+map("n", "<C-k>", "<C-W>k")
+map("n", "<C-h>", "<C-W>h")
+map("n", "<C-l>", "<C-W>l")
+-- resize windows
+map("n", "<C-Up>", "<C-W>+")
+map("n", "<C-Down>", "<C-W>-")
+map("n", "<C-Left>", "<C-W><")
+map("n", "<C-Right>", "<C-W>>")
 
-vim.keymap.set("n", "<C-Up>", "<C-W>+")
-vim.keymap.set("n", "<C-Down>", "<C-W>-")
-vim.keymap.set("n", "<C-Left>", "<C-W><")
-vim.keymap.set("n", "<C-Right>", "<C-W>>")
+-- system clipboard
+map({ "n", "x" }, "gy", '"+y')
+map("n","gp", '"+p')
 
-vim.keymap.set({ "n", "x" }, "gy", '"+y')
-
-vim.keymap.set("n", "<leader>i", "<cmd>$tabnew ~/notes/index.md | tcd ~/notes<cr>")
+-- pair expansions on enter
+map("i", "[<Cr>", "[<CR>]<Esc>O")
+map("i", "(<Cr>", "(<CR>)<Esc>O")
+map("i", "{<Cr>", "{<CR>}<Esc>O")
 
 -- marking files using arglist, maybe use harpoon or grapple instead
-vim.keymap.set(
+map(
 	"n",
 	"<leader>m",
 	function()
@@ -92,7 +126,7 @@ vim.keymap.set(
 		vim.cmd.argadd()
 	end
 )
-vim.keymap.set(
+map(
 	"n",
 	"<leader>M",
 	function()
@@ -117,12 +151,7 @@ vim.keymap.set(
 		}):find()
 	end
 )
-vim.keymap.set("n", "<leader>1", "<cmd>argument 1<cr>")
-vim.keymap.set("n", "<leader>2", "<cmd>argument 2<cr>")
-vim.keymap.set("n", "<leader>3", "<cmd>argument 3<cr>")
-vim.keymap.set("n", "<leader>4", "<cmd>argument 4<cr>")
-
--- pair expansions on enter
-vim.keymap.set("i", "[<Cr>", "[<CR>]<Esc>O")
-vim.keymap.set("i", "(<Cr>", "(<CR>)<Esc>O")
-vim.keymap.set("i", "{<Cr>", "{<CR>}<Esc>O")
+map("n", "<leader>1", "<cmd>argument 1<cr>")
+map("n", "<leader>2", "<cmd>argument 2<cr>")
+map("n", "<leader>3", "<cmd>argument 3<cr>")
+map("n", "<leader>4", "<cmd>argument 4<cr>")
