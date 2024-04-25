@@ -53,8 +53,8 @@ vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("n", "]q", "<cmd>cnext<cr>")
 vim.keymap.set("n", "[q", "<cmd>cprev<cr>")
 
-vim.keymap.set("n", "<leadre>tn", "<cmd>tabnew<cr>")
-vim.keymap.set("n", "<leadre>tc", "<cmd>tcd %:h<cr>")
+vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<cr>")
+vim.keymap.set("n", "<leader>tc", "<cmd>tcd %:h<cr>")
 vim.keymap.set("n", "]t", "<cmd>tabnext<cr>")
 vim.keymap.set("n", "[t", "<cmd>tabprev<cr>")
 
