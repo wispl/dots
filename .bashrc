@@ -10,6 +10,7 @@ export HISTCONTROL=ignoredups
 shopt -s checkwinsize
 # do not autocomplete when command is missing
 shopt -s no_empty_cmd_completion
+# append to history file
 shopt -s histappend
 
 # bash completion
