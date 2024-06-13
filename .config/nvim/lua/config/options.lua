@@ -34,11 +34,15 @@ o.showcmd = false
 o.showmode = false
 
 o.conceallevel = 2
-o.signcolumn = "yes"
+o.signcolumn = "yes:1"
 o.cursorline = true
-
 o.list = true
-opt.fillchars = { vert = " " }
+opt.fillchars = {
+	vert = " ",
+	foldclose = "",
+	foldopen = "",
+	fold = " "
+}
 opt.listchars = {
 	tab = "  ",
 	trail = "·",
@@ -47,6 +51,7 @@ opt.listchars = {
 	extends = "»",
 }
 
+-- folds
 o.foldmethod = "indent"
 o.foldlevel = 99
 o.foldtext = ""

@@ -69,7 +69,15 @@ return {
 	},
 	-- git
 	{
-		"tpope/vim-fugitive",
-		event = "CmdlineEnter"
+		"echasnovski/mini-git",
+		main = "mini.git",
+		cmd = "Git",
+		opts = {},
+	},
+	-- commentstring
+	{
+		"folke/ts-comments.nvim",
+		event = "VeryLazy",
+		opts = {},
 	}
 }

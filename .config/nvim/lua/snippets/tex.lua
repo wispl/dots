@@ -147,7 +147,7 @@ return {
 		fmta("\\lim_{<> \\to <>}", { i(1, "n"), i(2, "\\infty") }),
 		{ condition = in_mathzone }
 	),
-	s({ trig = "sum", snippetType = "autosnippet" },
+	s({ trig = "sum", wordTrig = false, snippetType = "autosnippet" },
 		fmta("\\sum_{n = <>}^{<>}", { i(1, "1"), i(2, "\\infty") }),
 		{ condition = in_mathzone }
 	),

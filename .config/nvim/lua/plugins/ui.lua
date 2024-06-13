@@ -17,14 +17,8 @@ return {
 			},
 			views = {
 				cmdline_popup = {
-					position = {
-						row = 5,
-						col = "50%",
-					},
-					size = {
-						width = 60,
-						height = "auto",
-					},
+					position = { row = 5, col = "50%" },
+					size = { width = 60, height = "auto" },
 					border = {
 						style = "none",
 						padding = { 1, 2 },
@@ -36,14 +30,8 @@ return {
 				},
 				popupmenu = {
 					relative = "editor",
-					position = {
-						row = 8,
-						col = "50%",
-					},
-					size = {
-						width = 60,
-						height = 10,
-					},
+					position = { row = 8, col = "50%", },
+					size = { width = 60, height = 10, },
 					border = {
 						style = "none",
 						padding = { 1, 2 },
@@ -86,7 +74,7 @@ return {
 	-- dashboard
 	{
 		"nvimdev/dashboard-nvim",
-		event = "VimEnter",
+		lazy = false,
 		opts = function()
 			local logo = {
 				"                                   ",
@@ -131,5 +119,5 @@ return {
 
 			return opts
 		end
-	},
+	}
 }

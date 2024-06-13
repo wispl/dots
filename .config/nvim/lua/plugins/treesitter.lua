@@ -1,12 +1,11 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		version = false,
+		branch = "main",
 		build = ":TSUpdate",
-		event = {"BufReadPost", "BufNewFile"},
-		dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
+		lazy = false,
 		opts = {
-			ensure_installed = {
+			ensure_install = {
 				"bash",
 				"c",
 				"cmake",
@@ -25,56 +24,18 @@ return {
 				"rust",
 				"vim",
 			},
-			highlight = { enable = true, disable = { latex } },
-			indent = { enable = true },
-			textobjects = {
-				select = {
-					enable = true,
-					lookahead = true,
-					keymaps = {
-						["af"] = "@function.outer",
-						["if"] = "@function.inner",
-						["ac"] = "@class.outer",
-						["ic"] = "@class.inner",
-						["ik"] = "@block.inner",
-						["ak"] = "@block.outer",
-						["ia"] = "@parameter.inner",
-						["aa"] = "@parameter.outer",
-					},
-				},
-				move = {
-					enable = true,
-					set_jumps = true,
-					goto_next_start = {
-						["]m"] = "@function.outer",
-						["]]"] = "@class.outer",
-					},
-					goto_next_end = {
-						["]M"] = "@function.outer",
-						["]["] = "@class.outer",
-					},
-					goto_previous_start = {
-						["[m"] = "@function.outer",
-						["[["] = "@class.outer",
-					},
-					goto_previous_end = {
-						["[M"] = "@function.outer",
-						["[]"] = "@class.outer",
-					},
-				},
-				swap = {
-					enable = true,
-					swap_next = {
-						["gs"] = "@parameter.inner",
-					},
-					swap_previous = {
-						["gS"] = "@parameter.inner",
-					},
-				}
-			},
 		},
 		config = function(_, opts)
-			require("nvim-treesitter.configs").setup(opts)
+			require("nvim-treesitter").setup(opts)
+
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function()
+					if vim.bo.filetype ~= "tex" then
+						pcall(vim.treesitter.start)
+						vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					end
+				end,
+			})
 		end
-	},
+	}
 }

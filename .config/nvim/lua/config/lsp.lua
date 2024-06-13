@@ -48,10 +48,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-local function find_rootdir(root_pattern)
-	return vim.fs.dirname(vim.fs.find(root_pattern, { upward = true })[1])
-end
-
 local function make_capabilities(capabilities)
 	return vim.tbl_extend(
 		"force",
@@ -72,7 +68,7 @@ local function setup_server(config)
 		capabilities = { config.capabilities, "table", true },
 	})
 	config.capabilities = make_capabilities(config.capabilities)
-	config.root_dir = find_rootdir(config.root_pattern)
+	config.root_dir = vim.fs.root(0, config.root_pattern)
 
 	local filetypes = config.filetypes
 	if type(filetypes) == string then
