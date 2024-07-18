@@ -16,7 +16,7 @@ return {
 				},
 				-- rust
 				["Cargo.toml"] = {
-					["*"] = { make = "cargo build", dispatch = "cargo run" }
+					["*"] = { make = "cargo check", dispatch = "cargo run" }
 				},
 				-- html
 				["index.html"] = {

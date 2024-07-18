@@ -38,10 +38,13 @@ o.signcolumn = "yes:1"
 o.cursorline = true
 o.list = true
 opt.fillchars = {
-	vert = " ",
-	foldclose = "",
 	foldopen = "",
-	fold = " "
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+	vert = " ",
 }
 opt.listchars = {
 	tab = "  ",
@@ -52,9 +55,14 @@ opt.listchars = {
 }
 
 -- folds
-o.foldmethod = "indent"
+o.foldenable = true
+o.foldcolumn = "1"
 o.foldlevel = 99
-o.foldtext = ""
+o.foldlevelstart = 99
+
+o.foldmethod = "expr"
+o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
 vim.g.markdown_folding = 1
 
 -- filetypes
