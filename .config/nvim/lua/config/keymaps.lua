@@ -15,8 +15,8 @@ map("i", "{<Cr>", "{<CR>}<Esc>O")
 map("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u")
 
 -- toggle options
-map("n", "<leader>us", function() vim.opt_local.spell = not(vim.opt_local.spell:get()) end)
-map("n", "<leader>uw", function() vim.opt_local.wrap = not(vim.opt_local.wrap:get()) end)
+map("n", "<leader>os", function() vim.opt_local.spell = not(vim.opt_local.spell:get()) end)
+map("n", "<leader>ow", function() vim.opt_local.wrap = not(vim.opt_local.wrap:get()) end)
 
 -- diagnostic and quickfix
 map("n", "]q", "<cmd>cnext<cr>")
