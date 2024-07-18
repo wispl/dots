@@ -42,6 +42,11 @@ return {
 					TelescopePreviewTitle = { fg = theme.ui.bg_dim, bg = theme.syn.constant, bold = true },
 					TelescopePreviewNormal = { bg = theme.ui.bg_dim },
 					TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+
+					-- ModesCopy =	{ bg = colors.palette.dragonOrange },
+					-- ModesDelete =	{ bg = colors.palette.dragonRed },
+					-- ModesInsert =	{ bg = colors.palette.dragonTeal },
+					-- ModesVisual =	{ bg = colors.palette.dragonPink },
 				}
 			end
 		},
