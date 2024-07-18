@@ -154,5 +154,17 @@ return {
 				}
 			}
 		end,
+	},
+	{
+		"mvllow/modes.nvim",
+		opts = {
+			colors = {
+				copy = "#dca561",
+				delete = "#c4746e",
+				insert = "#949fb5",
+				visual = "#957fb8",
+			},
+			set_signcolumn = false
+		}
 	}
 }
