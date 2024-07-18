@@ -71,7 +71,7 @@ return {
 	{
 		"echasnovski/mini-git",
 		main = "mini.git",
-		cmd = "Git",
+		event = "VeryLazy",
 		opts = {},
 	},
 	-- commentstring

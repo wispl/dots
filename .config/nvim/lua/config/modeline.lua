@@ -65,25 +65,7 @@ local function mode()
 end
 
 local function git()
-	local git = vim.b.gitsigns_status_dict
-	if not git or git.head == "" then
-		return ""
-	end
-
-	local added = ""
-	local changed = ""
-	local removed = ""
-	if git.added and git.added > 0 then
-		added = string.format(" %s+%s", "%#GitSignsAdd#", git.added)
-	end
-	if git.removed and git.removed > 0 then
-		removed = string.format(" %s-%s", "%#GitSignsDelete#", git.removed)
-	end
-	if git.changed and git.changed > 0 then
-		changed = string.format(" %s~%s", "%#GitSignsChange#", git.changed)
-	end
-
-	return string.format("%s %s %s %s", git.head, added, removed, changed)
+	return (vim.b.minigit_summary_string or "") .. " " .. (vim.b.minidiff_summary_string or "")
 end
 
 local function file()
