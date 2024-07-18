@@ -38,10 +38,7 @@ o.signcolumn = "yes:1"
 o.cursorline = true
 o.list = true
 opt.fillchars = {
-	foldopen = "",
-  foldclose = "",
   fold = " ",
-  foldsep = " ",
   diff = "╱",
   eob = " ",
 	vert = " ",
@@ -56,7 +53,6 @@ opt.listchars = {
 
 -- folds
 o.foldenable = true
-o.foldcolumn = "1"
 o.foldlevel = 99
 o.foldlevelstart = 99
 
