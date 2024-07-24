@@ -127,11 +127,11 @@ return {
 		event = "VeryLazy",
 		keys = {
 			{
-				"<leader>do",
+				"<leader>od",
 				function()
 					require("mini.diff").toggle_overlay(0)
 				end,
-				desc = "[D]iff [O]verlay",
+				desc = "[O]ption [D]iff",
 			},
 		},
 		opts = function()

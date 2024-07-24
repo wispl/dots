@@ -1,8 +1,8 @@
 return {
 	{
 		"rebelot/kanagawa.nvim",
+		lazy = true,
 		opts = {
-			compiled = true,	
 			transparent = true,
 			colors = {
 				theme = {
