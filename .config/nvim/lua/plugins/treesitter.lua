@@ -24,18 +24,6 @@ return {
 				"rust",
 				"vim",
 			},
-		},
-		config = function(_, opts)
-			require("nvim-treesitter").setup(opts)
-
-			vim.api.nvim_create_autocmd("FileType", {
-				callback = function()
-					if vim.bo.filetype ~= "tex" then
-						pcall(vim.treesitter.start)
-						-- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-					end
-				end,
-			})
-		end
+		}
 	}
 }

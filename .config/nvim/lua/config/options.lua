@@ -1,5 +1,9 @@
 local o, opt = vim.o, vim.opt
 
+-- leader keys
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- general
 o.timeoutlen = 500
 o.mouse = "a"

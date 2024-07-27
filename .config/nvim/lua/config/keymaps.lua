@@ -1,9 +1,5 @@
 local map = vim.keymap.set
 
--- leader keys
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 map("i", "jk", "<Esc>")
 
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
