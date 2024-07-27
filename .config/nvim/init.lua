@@ -1,7 +1,10 @@
 vim.loader.enable()
 
+local config_path = vim.fn.stdpath("config") .. "/lua/config/"
+local config = function(path) dofile(config_path .. path) end
+
 -- initialization
-require("config.options")
+config("options.lua")
 -- lazy load shada
 local shada = vim.o.shada
 vim.o.shada = ""
@@ -11,7 +14,7 @@ vim.opt.clipboard = ""
 -- lazy load autocmds if not opening a file
 local lazy_autocmds = vim.fn.argc(-1) == 0
 if not lazy_autocmds then
-	require("config.autocmds")
+	config("autocmds.lua")
 end
 
 -- bootstrap lazy
@@ -51,10 +54,10 @@ vim.api.nvim_create_autocmd("User", {
 	pattern = "VeryLazy",
 	callback = function()
 		if lazy_autocmds then
-			require("config.autocmds")
+			config("autocmds.lua")
 		end
-		require("config.keymaps")
-		require("config.modeline")
+		config("keymaps.lua")
+		config("modeline.lua")
 
 		vim.o.shada = shada
 		pcall(vim.cmd.rshada, { bang = true })
