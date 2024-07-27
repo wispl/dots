@@ -5,6 +5,7 @@ local config = function(path) dofile(config_path .. path) end
 
 -- initialization
 config("options.lua")
+config("ui.lua")
 -- lazy load shada
 local shada = vim.o.shada
 vim.o.shada = ""
@@ -57,7 +58,6 @@ vim.api.nvim_create_autocmd("User", {
 			config("autocmds.lua")
 		end
 		config("keymaps.lua")
-		config("modeline.lua")
 
 		vim.o.shada = shada
 		pcall(vim.cmd.rshada, { bang = true })
