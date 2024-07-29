@@ -79,5 +79,19 @@ return {
 		"folke/ts-comments.nvim",
 		event = "VeryLazy",
 		opts = {},
-	}
+	},
+	-- linting
+	{
+		"mfussenegger/nvim-lint",
+		keys = {
+			{ "<leader>cl", function() require("lint").try_lint() end, desc = "[C]ode [L]int" },
+		},
+		config = function()
+			require("lint").linters_by_ft = {
+				sh = { "shellcheck" },
+				c = { "clangtidy" },
+				cpp = { "clangtidy" }
+			}
+		end
+	},
 }

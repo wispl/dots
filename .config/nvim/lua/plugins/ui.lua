@@ -155,7 +155,7 @@ return {
 				}
 			}
 		end,
-	}
+	},
 	-- {
 	-- 	"mvllow/modes.nvim",
 	-- 	event = "VeryLazy",

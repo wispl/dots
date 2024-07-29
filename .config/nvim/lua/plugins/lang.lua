@@ -2,7 +2,7 @@ return {
 	-- project configuration
 	{
 		"tpope/vim-projectionist",
-		lazy = false,
+		event = "BufReadPost",
 		keys = {
 			{ "<leader>a", "<cmd>A<cr>", desc = "[A]lt file" }
 		},
