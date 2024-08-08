@@ -81,8 +81,8 @@ local function filestate()
 end
 
 local function lsp()
-	local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.Error })
-	local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.Warn })
+	local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+	local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
 
 	return string.format(" %s%s %s%s ",
 		"%#DiagnosticError#",

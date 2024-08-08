@@ -90,8 +90,13 @@ return {
 			require("lint").linters_by_ft = {
 				sh = { "shellcheck" },
 				c = { "clangtidy" },
-				cpp = { "clangtidy" }
+				cpp = { "clangtidy" },
+				rust = { "clippy" }
 			}
+			local clippy = require('lint').linters.clippy
+			table.insert(clippy.args, "--")
+			table.insert(clippy.args, "-W")
+			table.insert(clippy.args, "clippy::pedantic")
 		end
 	},
 }

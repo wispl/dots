@@ -12,19 +12,6 @@ lsp.handlers["textDocument/signatureHelp"] = lsp.with(
     { border = "rounded" }
 )
 
-vim.diagnostic.config = {
-	virtual_text = {
-		spacing = 4,
-		prefix = "●",
-	},
-	severity_sort = true
-}
-
-vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
-
 -- keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP keymaps",
