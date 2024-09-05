@@ -1,6 +1,15 @@
 vim.api.nvim_create_autocmd("FileType", {
-	callback = function()
-		pcall(vim.treesitter.start)
+	callback = function(args)
+		if not pcall(vim.treesitter.start, args.buf) then
+			return
+		end
+
+		if vim.api.nvim_buf_line_count(args.buf) < 40000 then
+			vim.api.nvim_buf_call(args.buf, function()
+				vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+				vim.wo[0][0].foldmethod = "expr"
+			end)
+		end
 	end,
 })
 

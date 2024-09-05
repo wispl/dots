@@ -137,6 +137,10 @@ return {
 		fmta("\\vec{<>}", { f(function(_, snip) return snip.captures[1] end) }),
 		{ condition = in_mathzone }
 	),
+	s({ trig = "(%a)%.%.", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
+		fmta("\\bm{<>}", { f(function(_, snip) return snip.captures[1] end) }),
+		{ condition = in_mathzone }
+	),
 
 	-- Operations
 	s({ trig = "sq", wordTrig = false, snippetType = "autosnippet" },

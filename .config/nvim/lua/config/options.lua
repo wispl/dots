@@ -60,9 +60,6 @@ o.foldenable = true
 o.foldlevel = 99
 o.foldlevelstart = 99
 
-o.foldmethod = "expr"
-o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
 vim.g.markdown_folding = 1
 
 vim.filetype.add({
