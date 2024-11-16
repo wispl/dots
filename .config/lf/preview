@@ -1,10 +1,26 @@
 #!/bin/sh
+
+# cached_dir="${HOME}/.cache/lf/"
+
+# hash() {
+#
+# }
+#
+# cache() {
+#
+# }
+
 case "$(file -Lb --mime-type -- "$1")" in
     image/*)
-        chafa -f sixel -s "$2x$3" --animate off --polite on "$1"
+        chafa -f sixel -s "${2}x${3}" --animate off --polite on "$1"
         exit 1
         ;;
+    application/pdf)
+	pdftoppm -jpeg -tiffcompression jpeg -singlefile "$1" | chafa -s "${2}x${3}" -f sixel --polite on --animate off
+	exit 1
+	;;
     *)
         cat "$1"
+	exit 1
         ;;
 esac
