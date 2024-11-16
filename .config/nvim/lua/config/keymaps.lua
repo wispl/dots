@@ -2,6 +2,10 @@ local map = vim.keymap.set
 
 map("i", "jk", "<Esc>")
 
+-- better movement for wrapped lines
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
 -- pair expansions on enter
 map("i", "[<Cr>", "[<CR>]<Esc>O")

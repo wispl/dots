@@ -1,9 +1,10 @@
 vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("set_treesitter", { clear = true} ),
 	callback = function(args)
-		if not pcall(vim.treesitter.start, args.buf) then
-			return
-		end
-
+		-- if not pcall(vim.treesitter.start, args.buf) then
+		-- 	return
+		-- end
+		--
 		if vim.api.nvim_buf_line_count(args.buf) < 40000 then
 			vim.api.nvim_buf_call(args.buf, function()
 				vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -17,6 +18,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- opening from cmdline, colors may flicker but it is better than flickering
 -- from the text
 vim.api.nvim_create_autocmd("BufReadPost", {
+	group = vim.api.nvim_create_augroup("fast_render", { clear = true} ),
 	once = true,
 	callback = function(event)
 		-- Skip if we already entered vim
@@ -55,4 +57,24 @@ vim.api.nvim_create_autocmd("FileType", {
 			desc = "Quit buffer",
 		})
 	end,
+})
+
+-- From LazyVim, check if file has to be reloaded
+vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+	group = vim.api.nvim_create_augroup("reload_file", { clear = true} ),
+  callback = function()
+    if vim.o.buftype ~= "nofile" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("wrap_spell", { clear = true} ),
+  pattern = { "text", "plaintex", "gitcommit", "markdown" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.spell = true
+  end,
 })
