@@ -155,7 +155,7 @@ bindsym {
     XF86MonBrightnessUp   exec brightnessctl set +5%
 
     # Screenshots
-    Print 	exec ~/bin/grimshot --notify save active
+    Print 	exec ~/bin/grimshot --notify save screen
     Shift+Print exec ~/bin/grimshot --notify save area
 
     # Notification

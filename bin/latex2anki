@@ -98,6 +98,9 @@ class CardParser:
         text = re.sub(r"\\begin{itemize}", "<ul>", text)
         text = re.sub(r"\\end{itemize}", "</ul>", text)
 
+        text = re.sub(r"\\begin{align\*}", "\\\\begin{align}", text)
+        text = re.sub(r"\\end{align\*}", "\\\\end{align}", text)
+
         text = re.sub(r"\\item (.+)", r"<li>\1</li>", text)
 
         # inline math

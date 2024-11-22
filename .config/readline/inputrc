@@ -17,10 +17,15 @@ set menu-complete-display-prefix on
 # Color files by types
 # Note that this may cause completion text blink in some terminals (e.g. xterm).
 set colored-stats On
+
 # Color the common prefix
 set colored-completion-prefix On
 # Color the common prefix in menu-complete
 set menu-complete-display-prefix On
+# Limit common prefix length to 5, replace longer ones with ellipses
+set completion-prefix-display-length 5
+
+set skip-completed-text on
 
 # Keeps the terminal tidy
 set echo-control-characters off

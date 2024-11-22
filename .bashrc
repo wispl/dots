@@ -24,6 +24,7 @@ alias grep="grep --color=auto"
 
 alias ncdu="ncdu --color dark"
 alias vim="nvim"
+alias vi="nvim"
 
 alias dots="git --git-dir=$HOME/.dots/ --work-tree=$HOME"
 
