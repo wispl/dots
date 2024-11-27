@@ -43,6 +43,8 @@ return {
 					TelescopePreviewNormal = { bg = theme.ui.bg_dim },
 					TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
 
+					NoiceMini = { bg = theme.ui.bg },
+
 					-- ModesCopy =	{ bg = colors.palette.dragonOrange },
 					-- ModesDelete =	{ bg = colors.palette.dragonRed },
 					-- ModesInsert =	{ bg = colors.palette.dragonTeal },

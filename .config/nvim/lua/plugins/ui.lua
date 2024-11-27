@@ -48,29 +48,11 @@ return {
 			},
 			routes = {
 				{
-					view = "notify",
+					view = "mini",
 					filter = { event = "msg_showmode" },
 				}
 			},
 		},
-	},
-	-- notifications
-	{
-		"rcarriga/nvim-notify",
-		keys = {
-			{
-				"<leader>n",
-				function()
-					require("notify").dismiss({ silent = true, pending = true })
-				end,
-				desc = "Notifications [D]ismiss"
-			}
-		},
-		opts = {
-			timeout = 1000,
-			render = "wrapped-compact",
-			stages = "static"
-		}
 	},
 	-- dashboard
 	{
