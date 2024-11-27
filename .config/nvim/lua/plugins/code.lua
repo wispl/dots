@@ -14,6 +14,10 @@ return {
 			},
 			{ "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
 			{ "<S-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+			{ "<C-e>",
+				function() return require("luasnip").change_choice(1) end,
+				silent = true, mode = { "i", "s" },
+			}
 		},
 		config = function()
 			require("luasnip.loaders.from_lua").lazy_load({ paths = "./lua/snippets/" })

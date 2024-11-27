@@ -10,7 +10,10 @@ local line_begin = require("luasnip.extras.expand_conditions").line_begin
 local in_mathzone = function() return vim.fn['vimtex#syntax#in_mathzone']() == 1 end
 
 return {
-	-- Environments
+
+	--------------------------
+	-- General Environments --
+	--------------------------
 
 	s({ trig = "beg", snippetType = "autosnippet" },
 		fmta(
@@ -26,13 +29,39 @@ return {
 	s("fig",
 		fmta(
 			[[
-				\begin{figure}{<>}
+				\begin{figure}[<>]
 					\centering
-					<>
-					\captioning{<>}
+					<>{<>}
+					\caption{<>}
+					\label{<>}
 				\end{figure}
 			]],
-			{ i(1, "h"), i(0), i(2) }
+			{ c(1, { t("h"), t("t"), t("p"), t("b") }),
+				i(2, "\\includegraphics[width=\\textwidth]"),
+				i(3),
+				i(4, "caption"),
+				i(5, "label")
+			}
+		),
+		{ condition = line_begin }
+	),
+	s("table",
+		fmta(
+			[[
+				\begin{table}[<>]
+					\centering
+					\caption{<>}
+					\label{<>}
+					\begin{tabular}
+						<>
+					\end{tabular}
+				\end{table}
+			]],
+			{ c(1, { t("h"), t("t"), t("p"), t("b") }),
+				i(2, "caption"),
+				i(3, "label"),
+				i(0)
+			}
 		),
 		{ condition = line_begin }
 	),
@@ -82,7 +111,23 @@ return {
 		{ condition = line_begin }
 	),
 
-	-- Math context
+	s({ trig = "tt", snippetType = "autosnippet" },
+		{ t("\\text{"), i(1), t("}") },
+		{ condition = in_mathzone }
+	),
+
+	----------------------
+	-- General Snippets --
+	----------------------
+
+	s({ trig = "SI", snippetType = "autosnippet" },
+		fmta("\\SI{<>}{<>}", { i(1), i(2) }),
+		{ condition = line_begin }
+	),
+
+	-------------------
+	-- Math Context --
+	-------------------
 
 	-- Symbols
 	s({ trig = ">>", snippetType = "autosnippet" },
@@ -141,6 +186,18 @@ return {
 		fmta("\\bm{<>}", { f(function(_, snip) return snip.captures[1] end) }),
 		{ condition = in_mathzone }
 	),
+	s({ trig = "nabl", wordTrig = false, snippetType = "autosnippet" },
+		{ t("\\nabla ") },
+		{ condition = in_mathzone }
+	),
+	s({ trig = "OO", wordTrig = false, snippetType = "autosnippet" },
+		{ t("\\mathbb{O} ") },
+		{ condition = in_mathzone }
+	),
+	s({ trig = "RR", wordTrig = false, snippetType = "autosnippet" },
+		{ t("\\mathbb{R} ") },
+		{ condition = in_mathzone }
+	),
 
 	-- Operations
 	s({ trig = "sq", wordTrig = false, snippetType = "autosnippet" },
@@ -155,23 +212,98 @@ return {
 		fmta("\\sum_{n = <>}^{<>}", { i(1, "1"), i(2, "\\infty") }),
 		{ condition = in_mathzone }
 	),
-	s({ trig = "dint", wordTrig = false, snippetType = "autosnippet" },
+	s({ trig = "dddint", wordTrig = false, snippetType = "autosnippet" },
 		fmta(
-			"\\int_{<>}^{<>} <>",
+			"\\int_{<>}^{<>} \\int_{<>}^{<>} \\int_{<>}^{<>} <>\\ <>",
+			{ i(1), i(2), i(3), i(4), i(5), i(6), i(7), i(8, "dxdydz") }
+		),
+		{ condition = in_mathzone }
+	),
+	s({ trig = "ddint", wordTrig = false, snippetType = "autosnippet" },
+		fmta(
+			"\\int_{<>}^{<>} \\int_{<>}^{<>} <>\\ <>",
+			{ i(1), i(2), i(3), i(4), i(5), i(6, "dxdy") }
+		),
+		{ condition = in_mathzone }
+	),
+	s({ trig = "dint", wordTrig = false, snippetType = "autosnippet" },
+		fmta("\\int_{<>}^{<>} <>\\ <>", { i(1), i(2), i(3), i(4, "dx")}),
+		{ condition = in_mathzone }
+	),
+	s({ trig = "part", wordTrig = false, snippetType = "autosnippet" },
+		fmta("\\frac{\\partial <>}{\\partial <>}", { i(1), i(2) }),
+		{ condition = in_mathzone }
+	),
+	s({ trig = "xx", wordTrig = false, snippetType = "autosnippet" },
+		{ t("\\times ") },
+		{ condition = in_mathzone }
+	),
+	s({ trig = "**", wordTrig = false, snippetType = "autosnippet" },
+		{ t("\\cdot ") },
+		{ condition = in_mathzone }
+	),
+	s({ trig = "norm", wordTrig = false, snippetType = "autosnippet" },
+		{ t("|"), i(1), t("|") },
+		{ condition = in_mathzone }
+	),
+	s({ trig = "(%a)grad", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
+		fmta(
+			"\\langle <>_{x}, <>_{y}, <>_{z}\\rangle",
 			{
-				i(1, ""), i(2, ""), i(0)
+				f(function(_, snip) return snip.captures[1] end),
+				f(function(_, snip) return snip.captures[1] end),
+				f(function(_, snip) return snip.captures[1] end)
 			}
+		),
+		{ condition = in_mathzone }
+	),
+
+	-- Environments
+	s({ trig = "pmat", snippetType = "autosnippet" },
+		fmta(
+			[[
+				\begin{pmatrix}
+					<>
+				\end{pmatrix}
+			]],
+			{ i(1) }
+		),
+		{ condition = in_mathzone }
+	),
+	s({ trig = "bmat", snippetType = "autosnippet" },
+		fmta(
+			[[
+				\begin{bmatrix}
+					<>
+				\end{bmatrix}
+			]],
+			{ i(1) }
+		),
+		{ condition = in_mathzone }
+	),
+	s({ trig = "case", snippetType = "autosnippet" },
+		fmta(
+			[[
+				\begin{cases}
+					<>
+				\end{cases}
+			]],
+			{ i(1) }
 		),
 		{ condition = in_mathzone }
 	),
 
 	-- Subscripts and Superscripts
 	s({ trig = "_", wordTrig = false, snippetType = "autosnippet" },
-		fmta("_{<>}<>", { i(1), i(0) } ),
+		fmta("_{<>}", { i(1) } ),
 		{ condition = in_mathzone }
 	),
 	s({ trig = "td", wordTrig = false, snippetType = "autosnippet" },
-		fmta("^{<>}<>", { i(1), i(0) }),
+		fmta("^{<>}", { i(1) }),
+		{ condition = in_mathzone }
+	),
+	s({ trig = "rd", wordTrig = false, snippetType = "autosnippet" },
+		fmta("^{(<>)}", { i(1) }),
 		{ condition = in_mathzone }
 	),
 	-- a0 -> a_{0}
