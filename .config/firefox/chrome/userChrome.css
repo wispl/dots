@@ -40,10 +40,10 @@
 }
 
 /* round content with borders, for better-looking letterboxing */
-.browserStack > browser {
-	border: 3px solid var(--toolbar-field-background-color);
-	border-radius: 8px !important;
-}
+/* .browserStack > browser { */
+/* 	border: 3px solid var(--toolbar-field-background-color); */
+/* 	border-radius: 8px !important; */
+/* } */
 /* use color of theme for letterboxing background-color */
 #tabbrowser-tabpanels {
   background-color: var(--toolbar-field-background-color) !important;

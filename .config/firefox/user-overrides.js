@@ -15,3 +15,8 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("privacy.resistFingerprinting", true);
 user_pref("privacy.resistFingerprinting.letterboxing", true);
 user_pref("webgl.disabled", true);
+
+// testing
+user_pref("browser.tabs.groups.enabled", true);
+user_pref("sidebar.revamp", true);
+user_pref("sidebar.verticalTabs", true);
