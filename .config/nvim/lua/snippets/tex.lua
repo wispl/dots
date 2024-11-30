@@ -121,8 +121,7 @@ return {
 	----------------------
 
 	s({ trig = "SI", snippetType = "autosnippet" },
-		fmta("\\SI{<>}{<>}", { i(1), i(2) }),
-		{ condition = line_begin }
+		fmta("\\SI{<>}{<>}", { i(1), i(2) })
 	),
 
 	-------------------

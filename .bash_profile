@@ -20,6 +20,7 @@ export ANKI_WAYLAND=1
 
 # Font Scaling
 export QT_FONT_DPI=120
+# gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
 
 # Editor
 export EDITOR=nvim
