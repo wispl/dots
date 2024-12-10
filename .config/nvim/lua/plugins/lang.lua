@@ -57,7 +57,7 @@ return {
 		"lervag/vimtex",
 		lazy = false,
 		config = function()
-			vim.g.vimtex_view_method = "zathura_simple"
+			vim.g.vimtex_view_method = "sioyek"
 		end,
 	}
 }

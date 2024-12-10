@@ -26,10 +26,12 @@ return {
 				"lua",
 				"markdown",
 				"markdown_inline",
+				"nix",
 				"python",
 				"regex",
 				"rust",
 				"vim",
+				"zig"
 			}
 		},
 		config = function(_, opts)
